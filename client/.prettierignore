@@ -1,0 +1,5 @@
+dist
+package-lock.json
+
+
+yarn add @types/classnames @types/enzyme @types/enzyme-adapter-react-16 @types/jest @types/lodash @types/react-router-dom @types/rebass__grid @types/styled-components @typescript-eslint/eslint-plugin @typescript-eslint/parser enzyme enzyme-adapter-react-16 eslint eslint-config-prettier eslint-formatter-gitlab eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-simple-import-sort eslint-plugin-unused-imports @babel/core @babel/helper-create-regexp-features-plugin @babel/plugin-proposal-class-properties @babel/preset-typescript @rebass/grid axios babel-jest babel-plugin-css-prop classnames husky jest jest-fetch-mock jest-junit jest-styled-components lodash polished qs react-router-dom styled-components ts-loader use-debounce
