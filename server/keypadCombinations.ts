@@ -68,11 +68,9 @@ const keypadPermuation = (numbers: number[]) => {
   return permutations;
 };
 
-const keypadPermuations = keypadPermuation([2, 3]);
-
-// console.log(keypadPermuations);
 const findWords = (object: any, perms: string[], permutationIndex: number) => {
   let wordsObject: any = object;
+  let count = 0;
   try {
     if (!wordsObject[perms[permutationIndex][0]]) {
       return false;
@@ -83,6 +81,7 @@ const findWords = (object: any, perms: string[], permutationIndex: number) => {
       charIndex++
     ) {
       if (wordsObject[perms[permutationIndex][charIndex]]) {
+        count++;
         wordsObject = wordsObject[perms[permutationIndex][charIndex]];
       }
     }
@@ -90,32 +89,9 @@ const findWords = (object: any, perms: string[], permutationIndex: number) => {
     console.error(e);
     return false;
   }
-  return wordsObject;
+
+  return count === perms[permutationIndex].length ? wordsObject : false;
 };
-
-fs.readFile("./temp/a.json", "utf8", function (err: any, data: string) {
-  if (err) throw err;
-  var obj: any = JSON.parse(data);
-  let result: string[] = [];
-  for (
-    let permutationIndex = 0;
-    permutationIndex < keypadPermuations.length;
-    permutationIndex++
-  ) {
-    const words: string[] = flattenNestedObject(
-      findWords(obj, keypadPermuations, permutationIndex)
-    );
-
-    if (words[0]) {
-      result = result.concat(
-        words.map((suffix: string) => {
-          return keypadPermuations[permutationIndex] + suffix;
-        })
-      );
-    }
-  }
-  console.log("findWords", result);
-});
 
 function flattenNestedObject(obj: any): any {
   if (typeof obj !== "object") {
@@ -141,5 +117,29 @@ function flattenNestedObject(obj: any): any {
   return result;
 }
 
-// rate limiting and delaying
-// use a generator for each
+export const searchWords = (keyValues: number[]) => {
+  const keypadPermuations = keypadPermuation(keyValues);
+
+  let result: string[] = [];
+  for (
+    let permutationIndex = 0;
+    permutationIndex < keypadPermuations.length;
+    permutationIndex++
+  ) {
+    const firstChar = keypadPermuations[permutationIndex].charAt(0);
+    const data = fs.readFileSync(`./temp/${firstChar}.json`);
+    var obj: any = JSON.parse(data);
+    const foundWords = findWords(obj, keypadPermuations, permutationIndex);
+    if (foundWords) {
+      const words: string[] = flattenNestedObject(foundWords);
+      if (words[0]) {
+        result = result.concat(
+          words.map((suffix: string) => {
+            return keypadPermuations[permutationIndex] + suffix;
+          })
+        );
+      }
+    }
+  }
+  return result;
+};

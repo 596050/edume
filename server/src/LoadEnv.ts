@@ -10,6 +10,7 @@ const options = commandLineArgs([
     type: String,
   },
 ]);
+
 // Set the env file
 const result2 = dotenv.config({
   path: `./env/${options.env}.env`,

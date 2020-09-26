@@ -8,6 +8,10 @@ var lineReader = readline.createInterface({
 const writeToFile = (fileName, data, fileType = "json") => {
   let json = {};
   json = JSON.stringify(data);
+  console.log(
+    "`${__dirname}/temp/${fileName}.${fileType}`",
+    `${__dirname}/temp/${fileName}.${fileType}`
+  );
   const directoryName = `${__dirname}/temp/${fileName}.${fileType}`;
   fs.writeFile(directoryName, json, "utf8", (err) => {
     if (err) throw err;

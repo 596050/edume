@@ -50,7 +50,7 @@ const Keyboard = () => {
       }}
     >
       <TextAreaContainer>
-        <TextArea maxLength={800} disabled value={output} />
+        <TextArea disabled maxLength={800} value={output} />
       </TextAreaContainer>
       <KeyboardBackground>
         {buttonSymbols?.map((buttonRow, index) => {

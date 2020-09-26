@@ -1,13 +1,8 @@
-const fs = require('fs-extra');
-const childProcess = require('child_process');
-
+const fs = require("fs-extra");
 
 try {
-    // Remove current build
-    fs.removeSync('./dist/');
-    // Copy front-end files
-    fs.copySync('./src/public', './dist/public');
-    fs.copySync('./src/views', './dist/views');
+  // Remove current build
+  fs.removeSync("./dist/");
 } catch (err) {
-    console.log(err);
+  console.log(err);
 }

@@ -1,26 +1,26 @@
-import cookieParser from "cookie-parser";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 import path from "path";
 import helmet from "helmet";
+import cors from "cors";
 
 import express, { Request, Response, NextFunction } from "express";
-import { BAD_REQUEST } from "http-status-codes";
+import { StatusCodes } from "http-status-codes";
 import "express-async-errors";
 
 import BaseRouter from "./routes";
 import logger from "@shared/Logger";
-import { cookieProps } from "@shared/constants";
 
 // Init express
 const app = express();
-
-/************************************************************************************
- *                              Set basic express settings
- ***********************************************************************************/
+app.use(cors());
+// {
+// origin: ["http://localhost:3000", "http://localhost:3000/"],
+// }
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser(cookieProps.secret));
+app.use(cookieParser());
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === "development") {
@@ -34,11 +34,15 @@ if (process.env.NODE_ENV === "production") {
 
 // Add APIs
 app.use("/api", BaseRouter);
+app.get("*", function (req, res) {
+  res.status(StatusCodes.NOT_FOUND).send("Invalid route");
+});
 
 // Print API errors
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.log("HEJODJ");
   logger.error(err.message, err);
-  return res.status(BAD_REQUEST).json({
+  return res.status(StatusCodes.BAD_REQUEST).json({
     error: err.message,
   });
 });
