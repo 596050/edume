@@ -11,10 +11,10 @@ export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
         height: 100%;
         width: 100%;
         box-sizing: border-box;
-        background-color: ${({ theme }) => theme.colors.background};
+        background-color: ${({ theme }) => theme.colors.foreground};
         z-index: ${({ theme }) => theme.zIndex - 100};
         overflow: hidden;
-        color: ${({ theme }) => theme.colors.foreground};
+        color: ${({ theme }) => theme.colors.base};
     }
 
     body {

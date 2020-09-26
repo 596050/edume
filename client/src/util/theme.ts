@@ -242,7 +242,7 @@ export const theme = {
     small: "320px",
     medium: "480px",
     large: "800px",
-    extraLarge: "1280px",
+    extraLarge: "98%",
     fullScreen: "100vh",
     mediumBreakpoint: 768,
   },

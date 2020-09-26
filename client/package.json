@@ -35,7 +35,7 @@
     "react-scripts": "3.4.3",
     "styled-components": "^5.2.0",
     "ts-loader": "^8.0.4",
-    "typescript": "~3.7.2",
+    "typescript": "^3.8.2",
     "use-debounce": "^5.0.0"
   },
   "scripts": {
@@ -44,8 +44,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "yarn eslint -c .eslintrc.json --ext d.ts,ts,tsx,js ./src/",
-    "clean:modules": "rm -rf node_modules",
-    "reset": "yarn clean:modules && yarn"
+    "clean:modules": "rm yarn.lock && rm -rf node_modules",
+    "reset": "yarn clean:modules && yarn && yarn start"
   },
   "eslintConfig": {
     "extends": "react-app"
