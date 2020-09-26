@@ -1,24 +1,20 @@
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 
-import { calculate } from "./constants";
+import { keypadCombinations } from "./constants";
+import { searchWords } from "./keypadCombinations";
 
 const router = Router();
 
 router.post(`/keypad-combinations`, (req: Request, res: Response) => {
-  console.log("req", req.body);
-
-  //   const { user } = req.body;
-  //   if (!user) {
-  //     return res.status(BAD_REQUEST).json({
-  //       error: paramMissingError,
-  //     });
-  //   }
-  //   // Add new user
-  //   user.role = {};
-  //   await userDao.add(user);
-
-  return res.status(StatusCodes.OK).end();
+  const input = req?.body?.input;
+  if (!Array.isArray(input) || !input.length) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      error: keypadCombinations,
+    });
+  }
+  const response = searchWords(input);
+  return res.status(StatusCodes.OK).json({ words: response }).end();
 });
 
 export default router;

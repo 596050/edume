@@ -34,13 +34,9 @@ if (process.env.NODE_ENV === "production") {
 
 // Add APIs
 app.use("/api", BaseRouter);
-app.get("*", function (req, res) {
-  res.status(StatusCodes.NOT_FOUND).send("Invalid route");
-});
 
 // Print API errors
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.log("HEJODJ");
   logger.error(err.message, err);
   return res.status(StatusCodes.BAD_REQUEST).json({
     error: err.message,

@@ -127,7 +127,9 @@ export const searchWords = (keyValues: number[]) => {
     permutationIndex++
   ) {
     const firstChar = keypadPermuations[permutationIndex].charAt(0);
-    const data = fs.readFileSync(`./temp/${firstChar}.json`);
+    const data = fs.readFileSync(
+      `${__dirname}/../shared/temp/${firstChar}.json`
+    );
     var obj: any = JSON.parse(data);
     const foundWords = findWords(obj, keypadPermuations, permutationIndex);
     if (foundWords) {
