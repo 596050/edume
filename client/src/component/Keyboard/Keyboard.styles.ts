@@ -1,39 +1,14 @@
 import { Flex } from "@rebass/grid";
 import styled from "styled-components";
 
-export const TextAreaContainer = styled.div`
-  transition: background 0.3s ease-in-out;
-  background: #2e2e2e;
-  border: 20px solid rgba(0, 0, 0, 0.1);
-  height: 200px;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  padding: 10px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%;
-`;
-export const TextArea = styled.textarea`
-  box-sizing: border-box;
-  padding: 20px;
-  color: hsla(0, 0%, 100%, 0.9);
-  background: 0 0;
-  border: none;
-  outline: 0;
-  font-family: monospace;
-  width: 100%;
-  height: 100%;
-  font-size: 18px;
-  overflow: auto;
-  resize: none;
-`;
-
 export const KeyboardBackground = styled.div`
   background-color: #d3d3d3;
   padding: 5px;
   & > div:not(:last-child) {
     margin-bottom: 5px;
   }
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
 
 export const KeyboardRow = styled(Flex)`
@@ -48,6 +23,7 @@ export const KeyboardRow = styled(Flex)`
 
 export const KeyboardButton = styled.button<{ maxWidth?: number }>`
   user-select: none;
+  width: ${({ maxWidth }) => maxWidth || 40}px;
   max-width: ${({ maxWidth }) => maxWidth || 40}px;
   color: black;
   box-shadow: 0 0 1px -1px rgba(0, 0, 0, 0.3);
@@ -68,4 +44,8 @@ export const KeyboardButton = styled.button<{ maxWidth?: number }>`
   &:active {
     background: #efefef;
   }
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.2),
+    0px 2px 3px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 `;

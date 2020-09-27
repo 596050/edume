@@ -1,8 +1,6 @@
 var fs = require("fs");
 var readline = require("readline");
 
-console.log("__dirname", __dirname);
-
 var lineReader = readline.createInterface({
   input: fs.createReadStream(`${__dirname}/words.txt`),
 });
@@ -13,7 +11,6 @@ const writeToFile = (fileName, data, fileType = "json") => {
   const directoryName = `${__dirname}/temp/${fileName}.${fileType}`;
   fs.writeFile(directoryName, json, "utf8", (err) => {
     if (err) throw err;
-    console.log("File saved", directoryName);
   });
 };
 

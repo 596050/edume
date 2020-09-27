@@ -10,7 +10,7 @@ type HttpMethods = "GET" | "PUT" | "POST" | "PATCH" | "DELETE";
 export type HttpRequestArgs = {
   url: string;
 } & RequestArgs;
-type HttpRequest = (args: HttpRequestArgs) => Promise<AxiosResponse<any>>;
+type HttpRequest = <T>(args: HttpRequestArgs) => Promise<AxiosResponse<T>>;
 
 const requestBuilder = (method: HttpMethods) => ({
   url,

@@ -3,9 +3,9 @@ var _ = require("lodash");
 
 export const getCharacters = (num?: number) => {
   let characterSet: string[] = [];
-  switch (num) {
+  switch (Number(num)) {
     case 1: {
-      characterSet = [".", ",", "!"];
+      characterSet = [];
       break;
     }
     case 2: {
@@ -41,7 +41,7 @@ export const getCharacters = (num?: number) => {
       break;
     }
     case 0: {
-      characterSet = [" "];
+      characterSet = [];
       break;
     }
     default: {
@@ -51,6 +51,7 @@ export const getCharacters = (num?: number) => {
   return characterSet;
 };
 
+// iteratively derive keypad permutations
 const keypadPermuation = (numbers: number[]) => {
   let permutations: string[] = [...getCharacters(numbers.shift())];
   for (let i = 0; i < numbers.length; i++) {
@@ -68,6 +69,7 @@ const keypadPermuation = (numbers: number[]) => {
   return permutations;
 };
 
+// iteratively find words in trie data structure
 const findWords = (object: any, perms: string[], permutationIndex: number) => {
   let wordsObject: any = object;
   let count = 0;
@@ -93,11 +95,12 @@ const findWords = (object: any, perms: string[], permutationIndex: number) => {
   return count === perms[permutationIndex].length ? wordsObject : false;
 };
 
+// recursively flatten the trie data structure and return the collected words
 function flattenNestedObject(obj: any): any {
   if (typeof obj !== "object") {
     return [obj];
   }
-  var result: any = [];
+  var result: any[] = [];
   if (obj.constructor === Array) {
     obj.map(function (item) {
       result = result.concat(flattenNestedObject(item));
@@ -117,6 +120,7 @@ function flattenNestedObject(obj: any): any {
   return result;
 }
 
+// iterate through permutations and search for words in trie data structure
 export const searchWords = (keyValues: number[]) => {
   const keypadPermuations = keypadPermuation(keyValues);
 
@@ -143,5 +147,5 @@ export const searchWords = (keyValues: number[]) => {
       }
     }
   }
-  return result;
+  return { words: result || [], permutations: keypadPermuations || [] };
 };

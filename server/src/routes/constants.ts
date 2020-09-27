@@ -1,2 +1,2 @@
 export const calculate = "calculate";
-export const keypadCombinations = "Please provide a valid array of integers";
+export const keypadCombinations = "Invalid array of integers";

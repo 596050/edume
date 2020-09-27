@@ -1,15 +1,14 @@
 import React from "react";
 
+import { GlobalProvider } from "./context";
 import Routes from "./Routes";
 
-function App() {
-  return <Routes />;
-}
+const App = () => {
+  return (
+    <GlobalProvider>
+      <Routes />
+    </GlobalProvider>
+  );
+};
 
 export default App;
-
-// "husky": {
-//   "hooks": {
-//     "pre-push": "yarn test && yarn lint --fix "
-//   }
-// },
